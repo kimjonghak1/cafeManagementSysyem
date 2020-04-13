@@ -12,7 +12,7 @@ public class MenuManager {
 			System.out.println("1. Add Cafe");
 			System.out.println("2. Delete Cafe");
 			System.out.println("3. Edit Cafe");
-			System.out.println("4. View Cafe");
+			System.out.println("4. View Cafes");
 			System.out.println("5. Exit");
 			System.out.println("Select one number between 1 - 5:");
 			
@@ -27,7 +27,7 @@ public class MenuManager {
 				cafemanager.EditCafe();
 			}
 			else if (num==4) {
-				cafemanager.ViewCafe();
+				cafemanager.ViewCafes();
 			}
 			else {
 				continue;
