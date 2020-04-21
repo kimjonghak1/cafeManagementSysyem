@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import cafe.Cafe;
+import cafe.DessertCafe;
+
 public class Cafemanager {
 	ArrayList<Cafe> Cafes = new ArrayList<Cafe>();
 	Cafe cafe;
@@ -8,25 +11,32 @@ public class Cafemanager {
 	Cafemanager(Scanner input){
 		this.input = input;
 
-
 	}
 
 	public void AddCafe() {
-		Cafe cafe = new Cafe();
-		System.out.print("Cafe Name : ");
-		cafe.name = input.next();
-		System.out.print("Cafe Menu : ");
-		cafe.menu = input.next();
-		System.out.print("Menu price : ");
-		cafe.price = input.nextInt();
-		input.nextLine();
-		System.out.print("Cafe Telephone : ");
-		cafe.phone = input.next();
-		input.nextLine();
-		System.out.print("Cafe location : ");
-		cafe.location = input.nextLine();
-		Cafes.add(cafe);
-
+		int kind = 0;
+		Cafe cafe ;
+		while(kind != 1 && kind != 2) {
+			System.out.print("1. for CoffeeCafe : ");
+			System.out.print("2. for DessertCafe : ");
+			System.out.print("Select num for Cafe Kind between 1 and 2 : ");
+			kind = input.nextInt();
+			if(kind==1) {
+				cafe = new Cafe();
+				cafe.getUserInput(input);
+				Cafes.add(cafe);
+				break;
+			}
+			else if(kind==2) {
+				cafe = new DessertCafe();
+				cafe.getUserInput(input);
+				Cafes.add(cafe);
+				break;
+			}
+			else {
+				System.out.print("Select num for Cafe Kind between 1 and 2 : ");
+			}
+		}
 
 	}
 	public void DeleteCafe() {
@@ -34,7 +44,7 @@ public class Cafemanager {
 		String cafeName = input.next();
 		int index = -1;
 		for (int i=0; i<Cafes.size(); i ++) {
-			if (Cafes.get(i).name.equals(cafeName) ) {
+			if (Cafes.get(i).getName().equals(cafeName) ) {
 				index = i;
 				break;
 			}
@@ -59,7 +69,7 @@ public class Cafemanager {
 		int index=Cafes.size();
 		for (int i=0; i<Cafes.size(); i ++) {
 			Cafe cafe = Cafes.get(i);
-			if (cafe.name.equals(cafeName)) {
+			if (cafe.getName().equals(cafeName)) {
 				int num = -1;
 				while(num!=6) {
 					System.out.println("** Cafe Info Edit Menu **");
@@ -74,27 +84,32 @@ public class Cafemanager {
 					num = input.nextInt();
 					if (num==1) {
 						System.out.print("Cafe Name : ");
-						cafe.name = input.next();
+						String name = input.next();
+						cafe.setName(name);
 
 					}
 					else if (num==2) {
 						System.out.print("Cafe Menu : ");
-						cafe.menu = input.next();
+						String menu = input.next();
+						cafe.setMenu(menu);
 
 					}
 					else if (num==3) {
 						System.out.print("Menu price : ");
-						cafe.price = input.nextInt();
+						int price = input.nextInt();
+						cafe.setPrice(price);
 
 					}
 					else if (num==4) {
 						System.out.print("Cafe Telephone : ");
-						cafe.phone = input.next();
+						String phone = input.next();
+						cafe.setPhone(phone);
 
 					}
 					else if(num==5){
 						System.out.print("Cafe location : ");
-						cafe.location = input.next();
+						String location = input.next();
+						cafe.setLocation(location);
 
 					}
 					else {
@@ -121,6 +136,7 @@ public class Cafemanager {
 
 		//	System.out.print("Cafe Name : ");
 		//	String cafeName = input.next();
+		System.out.println("# of registered Cafes:" + Cafes.size());
 		for (int i=0; i<Cafes.size(); i ++) {
 			Cafes.get(i).printInfo();
 		}
