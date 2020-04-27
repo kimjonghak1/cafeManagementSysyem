@@ -3,6 +3,12 @@ package cafe;
 import java.util.Scanner;
 
 public class DessertCafe extends Cafe {
+
+	public DessertCafe(Cafekind kind) {
+		super(kind);
+	}
+
+
 	public void getUserInput(Scanner input) {
 
 		System.out.print("Cafe Name : ");

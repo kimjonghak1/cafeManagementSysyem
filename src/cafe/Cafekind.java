@@ -1,7 +1,7 @@
 package cafe;
 
 public enum Cafekind {
-	CoffeCafe,
+	CoffeeCafe,
 	DessertCafe,
 	SmoothieCafe,
 	UnusualCafe,
