@@ -5,11 +5,11 @@ import java.util.Scanner;
 public class UnusualCafe extends Cafe {
 	protected String HeadOfficephone;
 	protected String HeadOfficelocation;
-	
+
 	public UnusualCafe(Cafekind kind) {
 		super(kind);
 	}
-	
+
 	public void getUserInput(Scanner input) {
 
 		System.out.print("Cafe Name : ");
@@ -47,7 +47,7 @@ public class UnusualCafe extends Cafe {
 			else {
 			}
 		}
-		
+
 		answer = 'x';
 		while(answer !='y' &&answer !='Y' && answer !='n' &&answer !='N') {
 			input.nextLine();
@@ -66,9 +66,9 @@ public class UnusualCafe extends Cafe {
 			else {
 			}
 		}
-		
+
 	}
-	
+
 	public void printInfo() {
 		String skind = "none";
 		switch(this.kind) {
@@ -85,10 +85,10 @@ public class UnusualCafe extends Cafe {
 			skind = "Dessert";
 			break;
 		default:
-			
+
 		}
-		System.out.println("kind" + skind +"name : " + name + " menu : " + menu + " price : " + price + " phone : "+ phone + " location : " + location + " HeadOffice's phone : "+ phone + " HeadOffice's location : " + location);
-		
+		System.out.println(" kind" + skind +"name : " + name + " menu : " + menu + " price : " + price + " phone : "+ phone + " location : " + location + " HeadOffice's phone : "+ phone + " HeadOffice's location : " + location);
+
 	}
 
 }

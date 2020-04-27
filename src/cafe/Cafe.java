@@ -85,24 +85,8 @@ public class Cafe {
 	}
 
 	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case CoffeeCafe :
-			skind ="Coffee";
-			break;
-		case SmoothieCafe :
-			skind = "Smoothie";
-			break;
-		case UnusualCafe :
-			skind = "Unusual";
-			break;
-		case DessertCafe :
-			skind = "Dessert";
-			break;
-		default:
-
-		}
-		System.out.println("kind" + skind +"name : " + name + " menu : " + menu + " price : " + price + " phone : "+ phone + " location : " + location);
+	
+		System.out.println("name : " + name + " menu : " + menu + " price : " + price + " phone : "+ phone + " location : " + location);
 
 	}
 	public void getUserInput(Scanner input) {
