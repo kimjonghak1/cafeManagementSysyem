@@ -2,14 +2,15 @@ package cafe;
 
 import java.util.Scanner;
 
-public class Cafe {
+public abstract class Cafe implements CafeInput {
 	protected Cafekind kind = Cafekind.CoffeeCafe;
 	protected String name;
 	protected String menu;
 	protected int price;
 	protected String phone;
 	protected String location;
-
+	protected String headlocation;
+	protected String headphone;
 
 	public Cafe() {
 
@@ -72,8 +73,16 @@ public class Cafe {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setPhone(String headphone) {
+		this.phone = headphone;
+	}
+	
+	public String getheadPhone() {
+		return headphone;
+	}
+
+	public void setheadPhone(String headphone) {
+		this.headphone = headphone;
 	}
 
 	public String getLocation() {
@@ -83,35 +92,79 @@ public class Cafe {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	public void printInfo() {
 	
-		System.out.println("name : " + name + " menu : " + menu + " price : " + price + " phone : "+ phone + " location : " + location);
-
+	public String getheadLocation() {
+		return headlocation;
 	}
-	public void getUserInput(Scanner input) {
 
+	public void setheadLocation(String headlocation) {
+		this.headlocation = headlocation;
+	}
+
+	public abstract void printInfo();
+	
+	public void setCafeName(Scanner input) {
 		System.out.print("Cafe Name : ");
 		String name = input.next();
 		this.setName(name);
+	}
 
+	public void setCafeMenu(Scanner input) {
 		System.out.print("Cafe Menu : ");
 		String menu = input.next();
 		this.setMenu(menu);
+	}
 
+	public void setPrice(Scanner input) {
 		System.out.print("Menu price : ");
 		int price = input.nextInt();
 		this.setPrice(price);
+	}
 
-		input.nextLine();
+	public void setPhone(Scanner input) {
 		System.out.print("Cafe Telephone : ");
 		String phone = input.next();
 		this.setPhone(phone);
+	}
+	
+	public void setheadPhone(Scanner input) {
+		System.out.print("head Office Telephone : ");
+		String headphone = input.next();
+		this.setheadPhone(headphone);
+	}
 
-		input.nextLine();
+	public void setLocation(Scanner input) {
 		System.out.print("Cafe location : ");
-		String location = input.nextLine();
+		String location = input.next();
 		this.setLocation(location);
 	}
+	
+	public void setheadLocation(Scanner input) {
+		System.out.print("Head Office Location : ");
+		String location = input.next();
+		this.setheadLocation(location);
+	}
+
+	public String getKindString() {
+		String skind = "none";
+		switch(this.kind) {
+		case CoffeeCafe :
+			skind ="Coffee";
+			break;
+		case SmoothieCafe :
+			skind = "Smoothie";
+			break;
+		case UnusualCafe :
+			skind = "Unusual";
+			break;
+		case DessertCafe :
+			skind = "Dessert";
+			break;
+		default:
+	}
+		return skind;
+	
+	}
+
 
 }
