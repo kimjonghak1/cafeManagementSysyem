@@ -5,6 +5,4 @@ public enum Cafekind {
 	DessertCafe,
 	SmoothieCafe,
 	UnusualCafe,
-	
-
 }

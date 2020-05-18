@@ -2,11 +2,14 @@ package cafe;
 
 import java.util.Scanner;
 
+import exceptions.LocationFormatException;
+import exceptions.PriceFormatException;
+
 public abstract class Cafe implements CafeInput {
 	protected Cafekind kind = Cafekind.CoffeeCafe;
 	protected String name;
 	protected String menu;
-	protected int price;
+	protected String price;
 	protected String phone;
 	protected String location;
 	protected String headlocation;
@@ -20,7 +23,7 @@ public abstract class Cafe implements CafeInput {
 
 	}
 
-	public Cafe (String name, String menu, int price, String phone, String location) {
+	public Cafe (String name, String menu, String price, String phone, String location) {
 		this.name=name;
 		this.menu=menu;
 		this.price=price;
@@ -29,7 +32,7 @@ public abstract class Cafe implements CafeInput {
 
 	}
 
-	public Cafe (Cafekind kind, String name, String menu, int price, String phone, String location) {
+	public Cafe (Cafekind kind, String name, String menu, String price, String phone, String location) {
 		this.name=name;
 		this.menu=menu;
 		this.price=price;
@@ -61,11 +64,14 @@ public abstract class Cafe implements CafeInput {
 		this.menu = menu;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) throws PriceFormatException {
+		if(!price.contains("$") && !price.contentEquals("")) {
+			throw new PriceFormatException();
+		}
 		this.price = price;
 	}
 
@@ -76,7 +82,7 @@ public abstract class Cafe implements CafeInput {
 	public void setPhone(String headphone) {
 		this.phone = headphone;
 	}
-	
+
 	public String getheadPhone() {
 		return headphone;
 	}
@@ -89,20 +95,26 @@ public abstract class Cafe implements CafeInput {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(String location) throws LocationFormatException {
+		if(!location.contains("시") && !location.equals("")) {
+			throw new LocationFormatException();
+		}
 		this.location = location;
 	}
-	
+
 	public String getheadLocation() {
 		return headlocation;
 	}
 
-	public void setheadLocation(String headlocation) {
+	public void setheadLocation(String headlocation) throws LocationFormatException {
+		if(!headlocation.contains("시") && !location.equals("")) {
+			throw new LocationFormatException();
+		}
 		this.headlocation = headlocation;
 	}
 
 	public abstract void printInfo();
-	
+
 	public void setCafeName(Scanner input) {
 		System.out.print("Cafe Name : ");
 		String name = input.next();
@@ -116,9 +128,16 @@ public abstract class Cafe implements CafeInput {
 	}
 
 	public void setPrice(Scanner input) {
-		System.out.print("Menu price : ");
-		int price = input.nextInt();
-		this.setPrice(price);
+		String price ="";
+		while(!price.contains("$") || price.equals("")) {
+			System.out.print("Menu price : ");
+			price = input.next();
+			try {
+				this.setPrice(price);
+			} catch (PriceFormatException e) {
+				System.out.println("Incorrect Price Foramt. put the price that contains $");
+			}
+		}
 	}
 
 	public void setPhone(Scanner input) {
@@ -126,7 +145,7 @@ public abstract class Cafe implements CafeInput {
 		String phone = input.next();
 		this.setPhone(phone);
 	}
-	
+
 	public void setheadPhone(Scanner input) {
 		System.out.print("head Office Telephone : ");
 		String headphone = input.next();
@@ -134,15 +153,29 @@ public abstract class Cafe implements CafeInput {
 	}
 
 	public void setLocation(Scanner input) {
-		System.out.print("Cafe location : ");
-		String location = input.next();
-		this.setLocation(location);
+		String Location ="";
+		while(!Location.contains("시") || Location.equals("")) {
+			System.out.print("Cafe Location : ");
+			Location = input.next();
+			try {
+				this.setLocation(Location);
+			} catch (LocationFormatException e) {
+				System.out.println("Incorrect Location Foramt. put the location that contains 시");
+			}
+		}
 	}
-	
+
 	public void setheadLocation(Scanner input) {
-		System.out.print("Head Office Location : ");
-		String location = input.next();
-		this.setheadLocation(location);
+		String headlocation = "";
+		while(!headlocation.contains("시") || headlocation.contentEquals("")) {
+			System.out.print("Head Office Location : ");
+			headlocation = input.next();
+			try {
+				this.setheadLocation(headlocation);
+			} catch (LocationFormatException e) {
+				System.out.println("Incorrect Location Foramt. put the price that contains 시");
+			}
+		}
 	}
 
 	public String getKindString() {
@@ -161,9 +194,9 @@ public abstract class Cafe implements CafeInput {
 			skind = "Dessert";
 			break;
 		default:
-	}
+		}
 		return skind;
-	
+
 	}
 
 

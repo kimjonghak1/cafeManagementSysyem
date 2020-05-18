@@ -2,8 +2,10 @@ package cafe;
 
 import java.util.Scanner;
 
+import exceptions.LocationFormatException;
+
 public abstract class GyeongsangdoCafe extends Cafe {
-	
+
 	public GyeongsangdoCafe(Cafekind kind) {
 		super(kind);
 	}
@@ -17,47 +19,58 @@ public abstract class GyeongsangdoCafe extends Cafe {
 		System.out.println(" kind" + skind +"name : " + name + " menu : " + menu + " price : " + price + " phone : "+ phone + " location : " + location + " HeadOffice's phone : "+ phone + " HeadOffice's location : " + location);
 
 	}
-	
+
 	public void setLocationinGyeongsangdo(Scanner input) {
 		char answer = 'x';
 		while(answer !='y' &&answer !='Y' && answer !='n' &&answer !='N') {
 			input.nextLine();
 			System.out.print("Is a Cafe in Gyeongsangdo? (Y/N) ");
 			answer = input.next().charAt(0);
-			if(answer == 'Y' || answer =='y') {
-				setLocation(input);
-				break;
+			try {
+				if(answer == 'Y' || answer =='y') {
+					setLocation(input);
+					break;
+				}
+				else if (answer == 'n' || answer =='N') {
+					this.setLocation("");
+					break;
+				}
+				else {
+				}
 			}
-			else if (answer == 'n' || answer =='N') {
-				this.setLocation("");
-				break;
-			}
-			else {
+			catch(LocationFormatException e) {
+				System.out.println("Incorrect Location Foramt. put the price that contains ½Ã");
 			}
 		}
-		
-		
+
+
 	}
-	
+
 	public void setHeadOfficeLocation(Scanner input) {
 		char answer = 'x';
 		while(answer !='y' &&answer !='Y' && answer !='n' &&answer !='N') {
 			input.nextLine();
 			System.out.print("Is a Cafe's Head Office in Gyeongsangdo? (Y/N) ");
 			answer = input.next().charAt(0);
-			if(answer == 'Y' || answer =='y') {
-				setheadLocation(input);
-				setheadPhone(input);
+			try {
+				if(answer == 'Y' || answer =='y') {
+					setheadLocation(input);
+					setheadPhone(input);
+				}
+				else if (answer == 'n' || answer =='N') {
+					this.setheadLocation("");
+					this.setheadPhone("");
+					break;
+				}
+				else {
+				}
 			}
-			else if (answer == 'n' || answer =='N') {
-				this.setheadLocation("");
-				this.setheadPhone("");
-				break;
+			catch(LocationFormatException e) {
+				System.out.println("Incorrect Location Foramt. put the price that contains ½Ã");
 			}
-			else {
-			}
+
 		}
-		
-	
+
+
 	}
 }
