@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,10 +11,15 @@ import cafe.DessertCafe;
 import cafe.SmoothieCafe;
 import cafe.UnusualCafe;
 
-public class Cafemanager {
+public class Cafemanager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1816670738165567507L;
+	
 	ArrayList<CafeInput> Cafes = new ArrayList<CafeInput>();
 	Cafe cafe;
-	Scanner input;
+	transient Scanner input;
 	Cafemanager(Scanner input){
 		this.input = input;
 
@@ -168,6 +174,10 @@ public class Cafemanager {
 		System.out.println("5. Edit Cafe Location");
 		System.out.println("6. Exit");
 		System.out.println("Select one number between 1 - 6:");
+	}
+	
+	public void setScanner(Scanner input) {
+		this.input=input;
 	}
 }
 
