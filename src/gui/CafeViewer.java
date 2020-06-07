@@ -1,13 +1,18 @@
 package gui;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class CafeViewer extends JFrame{
+public class CafeViewer extends JPanel{
 	
-	public CafeViewer() {
+	WindowFrame frame;
+	
+	public CafeViewer(WindowFrame frame) {
+		this.frame = frame;
+		
 		DefaultTableModel model = new DefaultTableModel();
 		model.addColumn("Name");
 		model.addColumn("Menu");
@@ -20,9 +25,6 @@ public class CafeViewer extends JFrame{
 		JScrollPane sp = new JScrollPane(table);
 		
 		this.add(sp);
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
 		
 	}
 
