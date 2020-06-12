@@ -10,12 +10,20 @@ public interface CafeInput {
 	public String getName();
 
 	public void setName(String name);
+	
+	public String getMenu();
 
 	public void setMenu(String menu);
+	
+	public String getPrice();
 
 	public void setPrice(String price) throws PriceFormatException;
+	
+	public String getPhone();
 
 	public void setPhone(String phone);
+	
+	public String getLocation();
 
 	public void setLocation(String location) throws LocationFormatException;
 

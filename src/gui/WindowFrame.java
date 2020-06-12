@@ -3,27 +3,37 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import manager.Cafemanager;
+
 public class WindowFrame extends JFrame {
+
+	Cafemanager cafemanager;
 	
 	MenuSelection menuselection;
 	CafeAdder cafeadder;
 	CafeViewer cafeviewer;
 	
-	public WindowFrame() {
-		this.menuselection = new MenuSelection(this);
-		this.cafeadder = new CafeAdder(this);
-		this.cafeviewer = new CafeViewer(this);
+
+	public WindowFrame(Cafemanager cafemanager) {
+		
+		
+		
+		
+		this.cafemanager = cafemanager;
+		menuselection = new MenuSelection(this);
+		cafeadder = new CafeAdder(this);
+		cafeviewer = new CafeViewer(this,this.cafemanager);
+		
+		
 		
 		this.setSize(500,300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
 		this.setupPanel(menuselection);
-		
-		
+
+
 		this.setVisible(true);
 	}
-	
+
 	public MenuSelection getMenuselection() {
 		return menuselection;
 	}
@@ -47,7 +57,7 @@ public class WindowFrame extends JFrame {
 	public void setCafeviewer(CafeViewer cafeviewer) {
 		this.cafeviewer = cafeviewer;
 	}
-	
+
 	public void setupPanel(JPanel panel) {
 		this.getContentPane().removeAll();
 		this.getContentPane().add(panel);
